@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ventas Beltrán | Madera Sólida - La Chorrera</title>
+  <meta name="description" content="Ventas Beltrán - Madera sólida en Panamá Oeste (La Chorrera). Pino, Cedro, Teca. Todas las medidas. Corte y entrega. Cotiza por WhatsApp." />
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#121a23;
+      --muted:#90a4b8;
+      --text:#e8f0f7;
+      --brand:#57d48f;
+      --brand2:#4aa3ff;
+      --shadow: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1120px;
+      --border: 1px solid rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 20% -10%, rgba(74,163,255,.25), transparent 55%),
+                  radial-gradient(900px 600px at 80% 10%, rgba(87,212,143,.22), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(11,15,20,.65);
+      border-bottom: var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .logo{
+      width:40px; height:40px; border-radius:14px;
+      background: linear-gradient(135deg, rgba(87,212,143,.95), rgba(74,163,255,.9));
+      display:grid; place-items:center;
+      box-shadow: var(--shadow);
+      font-weight:900;
+      color:#061018;
+      font-size:18px;
+    }
+    .brandMeta{display:flex; flex-direction:column; gap:2px}
+    .brandMeta .title{font-size:15px}
+    .brandMeta .sub{font-size:12px; color:var(--muted); font-weight:600}
+
+    .navlinks{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .pill{
+      padding:9px 12px; border-radius:999px;
+      border: var(--border);
+      color:var(--text);
+      background: rgba(255,255,255,.02);
+      transition: .18s ease;
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .pill:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.18)}
+    .pill.cta{
+      background: linear-gradient(135deg, rgba(87,212,143,.95), rgba(74,163,255,.9));
+      border: none;
+      color:#061018;
+      font-weight:900;
+    }
+
+    /* Cards / sections */
+    .card{
+      background: rgba(18,26,35,.78);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero{padding:30px 0 10px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .heroGrid{grid-template-columns:1fr}
+    }
+    .heroMain{padding:22px}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(87,212,143,.14);
+      border: 1px solid rgba(87,212,143,.25);
+      color: #bff3d4;
+      font-weight:800;
+      font-size:13px;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height:1.08;
+      letter-spacing: -.6px;
+    }
+    .lead{
+      margin:0;
+      color:var(--muted);
+      font-size: 15px;
+      max-width: 68ch;
+    }
+    .heroActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:11px 14px;
+      border-radius: 12px;
+      border: var(--border);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      font-weight:900;
+      cursor:pointer;
+      transition:.18s ease;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.2)}
+    .btnPrimary{
+      background: linear-gradient(135deg, rgba(87,212,143,.95), rgba(74,163,255,.9));
+      color:#061018; border:none;
+    }
+
+    .kpis{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top:18px;
+    }
+    @media (max-width: 520px){ .kpis{grid-template-columns:1fr} }
+    .kpi{
+      padding:12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      border: var(--border);
+    }
+    .kpi b{display:block; font-size:18px}
+    .kpi span{color:var(--muted); font-size:13px; font-weight:650}
+
+    .heroSide{padding:18px; display:flex; flex-direction:column; gap:12px}
+    .sideTitle{font-weight:900; font-size:16px; margin:0}
+    .sideRow{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px;
+      border: var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--brand);
+      margin-top:5px;
+      box-shadow: 0 0 0 5px rgba(87,212,143,.12);
+      flex: 0 0 auto;
+    }
+    .sideRow p{margin:0; color:var(--muted); font-size:13.5px}
+    .section{padding:18px 0}
+    .sectionHeader{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .sectionHeader h2{margin:0; font-size:20px}
+    .sectionHeader small{color:var(--muted); font-weight:650}
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 900px){ .gallery{grid-template-columns: repeat(2,1fr)} }
+    @media (max-width: 600px){ .gallery{grid-template-columns: 1fr} }
+    .photo{
+      border-radius: 16px;
+      overflow:hidden;
+      border: var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    .photo img{
+      width:100%;
+      height:190px;
+      object-fit:cover;
+      display:block;
+    }
+    .photo .cap{
+      padding:10px 12px;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:650;
+    }
+
+    /* Catalog */
+    .toolbar{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .input, select, textarea{
+      padding:10px 12px;
+      border-radius: 12px;
+      border: var(--border);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      outline:none;
+      font-weight:650;
+      width:100%;
+    }
+    .input::placeholder, textarea::placeholder{color: rgba(144,164,184,.85)}
+    textarea{min-height:120px; resize:vertical}
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 920px){ .grid{grid-template-columns: repeat(2,1fr)} }
+    @media (max-width: 600px){ .grid{grid-template-columns: 1fr} }
+
+    .product{padding:14px; display:flex; flex-direction:column; gap:10px}
+    .thumb{
+      height:150px;
+      border-radius: 16px;
+      border: var(--border);
+      overflow:hidden;
+      position:relative;
+      background: rgba(255,255,255,.03);
+    }
+    .thumb img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.05) contrast(1.02)}
+    .thumb .label{
+      position:absolute; left:12px; bottom:10px;
+      font-weight:900; font-size:13px;
+      padding:8px 10px;
+      border-radius:999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.25);
+      backdrop-filter: blur(6px);
+    }
+    .pTop{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
+    .product h3{margin:0; font-size:16px}
+    .tag{
+      font-size:12px;
+      color:#c7dcff;
+      background: rgba(74,163,255,.14);
+      border: 1px solid rgba(74,163,255,.25);
+      padding:6px 8px;
+      border-radius: 999px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .desc{margin:0; color:var(--muted); font-size:13px}
+    .rowBtns{display:flex; gap:10px; flex-wrap:wrap}
+    .btnSoft{
+      flex:1;
+      padding:11px 12px;
+      border-radius: 12px;
+      border: var(--border);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      font-weight:900;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .btnSoft:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.2)}
+    .btnGreen{
+      flex:1;
+      background: linear-gradient(135deg, rgba(87,212,143,.95), rgba(74,163,255,.9));
+      color:#061018;
+      border:none;
+    }
+
+    /* Quote form */
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 800px){ .twoCol{grid-template-columns:1fr} }
+    .formGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width: 700px){ .formGrid{grid-template-columns:1fr} }
+    .note{color:var(--muted); font-size:12.5px; margin:0}
+
+    /* Footer */
+    footer{
+      padding:22px 0 30px;
+      color: var(--muted);
+      border-top: var(--border);
+      margin-top: 18px;
+    }
+
+    /* Floating WA */
+    .floatingWA{
+      position:fixed; right:16px; bottom:16px; z-index:50;
+      display:flex; align-items:center; gap:10px;
+      padding:12px 14px;
+      border-radius:999px;
+      background: linear-gradient(135deg, rgba(87,212,143,.95), rgba(74,163,255,.9));
+      color:#061018; font-weight:950;
+      box-shadow: var(--shadow);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <div class="logo">🪵</div>
+          <div class="brandMeta">
+            <div class="title">Ventas Beltrán</div>
+            <div class="sub">Madera sólida · La Chorrera · Corte y entrega</div>
+          </div>
+        </div>
+        <div class="navlinks">
+          <a class="pill" href="#catalogo">Catálogo</a>
+          <a class="pill" href="#cotizar">Cotizar</a>
+          <a class="pill" href="#ubicacion">Ubicación</a>
+          <button class="pill cta" id="btnWAHeader">WhatsApp 💬</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="heroGrid">
+        <div class="card heroMain">
+          <span class="badge">✅ Pino · Cedro · Teca · Postes · Listones · Todas las medidas</span>
+          <h1>Madera sólida lista para tu obra y carpintería</h1>
+          <p class="lead">
+            Atención en <b>Panamá Oeste</b>. Cotiza rápido por WhatsApp con medidas, largo, cantidad,
+            si necesitas <b>corte</b> y si quieres <b>entrega</b>.
+          </p>
+          <div class="heroActions">
+            <a class="btn btnPrimary" href="#catalogo">Ver catálogo</a>
+            <a class="btn" href="#cotizar">Pedir cotización</a>
+            <button class="btn" id="btnMapsHero">Cómo llegar</button>
+          </div>
+
+          <div class="kpis">
+            <div class="kpi"><b>Medidas</b><span>Tablas, vigas, listones y postes</span></div>
+            <div class="kpi"><b>Corte</b><span>Recto a medida (según lista)</span></div>
+            <div class="kpi"><b>Entrega</b><span>La Chorrera y alrededores</span></div>
+          </div>
+        </div>
+
+        <aside class="card heroSide">
+          <p class="sideTitle">Lo que más se mueve</p>
+          <div class="sideRow"><span class="dot"></span><p><b>Pino</b><br/>2x4 · 2x6 · 2x8 · 1x6 · 1x8</p></div>
+          <div class="sideRow"><span class="dot" style="background:var(--brand2)"></span><p><b>Cedro</b><br/>Tablas para mueble y acabado</p></div>
+          <div class="sideRow"><span class="dot" style="background:#ffd166"></span><p><b>Teca</b><br/>Exterior y muebles resistentes</p></div>
+          <div class="sideRow"><span class="dot" style="background:#ff5b6e"></span><p><b>Postes</b><br/>Cercas, soportes y estructuras</p></div>
+          <small style="color:var(--muted)">📍 Calle Buena Vista, diagonal al Mercado de Abasto.</small>
+        </aside>
+      </div>
+    </section>
+
+    <!-- GALERÍA (puedes cambiar las fotos por las tuyas) -->
+    <section class="section">
+      <div class="sectionHeader">
+        <div>
+          <h2>Galería</h2>
+          <small>Ejemplos (reemplaza por fotos reales cuando quieras)</small>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <div class="photo card">
+          <img alt="Madera sólida" src="https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=1200&q=70">
+          <div class="cap">Madera sólida para proyectos</div>
+        </div>
+        <div class="photo card">
+          <img alt="Tablas y vigas" src="https://images.unsplash.com/photo-1581579188871-3b4b1d0b7e28?auto=format&fit=crop&w=1200&q=70">
+          <div class="cap">Tablas y vigas (varias medidas)</div>
+        </div>
+        <div class="photo card">
+          <img alt="Carpintería y construcción" src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1200&q=70">
+          <div class="cap">Carpintería y construcción</div>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:10px;">
+        Tip: si quieres usar tus fotos, ponlas en la misma carpeta del archivo como: <b>foto1.jpg</b> y cambia el <i>src</i> por <b>foto1.jpg</b>.
+      </p>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section id="catalogo" class="section">
+      <div class="sectionHeader">
+        <div>
+          <h2>Catálogo</h2>
+          <small>Sin precios visibles · Cotización directa por WhatsApp</small>
+        </div>
+        <div class="toolbar" style="min-width:320px;">
+          <input class="input" id="search" placeholder="Buscar (ej: 2x4, 1x6, pino, cedro, poste)" />
+          <select id="wood">
+            <option value="all">Todas las maderas</option>
+            <option value="Pino">Pino</option>
+            <option value="Cedro">Cedro</option>
+            <option value="Teca">Teca</option>
+            <option value="Postes">Postes</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid" id="products"></div>
+    </section>
+
+    <!-- COTIZAR -->
+    <section id="cotizar" class="section">
+      <div class="sectionHeader">
+        <div>
+          <h2>Pedir cotización</h2>
+          <small>Se envía por WhatsApp con todos los datos</small>
+        </div>
+      </div>
+
+      <div class="twoCol">
+        <div class="card" style="padding:16px;">
+          <h3 style="margin:0 0 8px;">Formulario rápido</h3>
+
+          <form id="quoteForm">
+            <div class="formGrid">
+              <input class="input" name="nombre" placeholder="Tu nombre" required />
+              <input class="input" name="telefono" placeholder="Tu WhatsApp / Teléfono" required />
+              <select class="input" name="unidad">
+                <option value="por pieza">Cotizar por pieza</option>
+                <option value="por pie tablar">Cotizar por pie tablar</option>
+                <option value="no sé (asesorarme)">No sé (asesorarme)</option>
+              </select>
+              <select class="input" name="entrega">
+                <option value="Sí, necesito entrega">Sí, necesito entrega</option>
+                <option value="No, paso a retirar">No, paso a retirar</option>
+              </select>
+            </div>
+
+            <div class="formGrid" style="margin-top:10px;">
+              <select class="input" name="madera">
+                <option value="Pino">Pino</option>
+                <option value="Cedro">Cedro</option>
+                <option value="Teca">Teca</option>
+                <option value="Postes">Postes</option>
+                <option value="Mixto (varios)">Mixto (varios)</option>
+              </select>
+              <input class="input" name="medida" placeholder="Medida (ej: 2x4, 1x6, 4x4...)" required />
+              <select class="input" name="largo">
+                <option value="8 pies">8 pies</option>
+                <option value="10 pies">10 pies</option>
+                <option value="12 pies">12 pies</option>
+                <option value="14 pies">14 pies</option>
+                <option value="16 pies">16 pies</option>
+                <option value="Otro (especificar)">Otro (especificar)</option>
+              </select>
+              <input class="input" name="cantidad" placeholder="Cantidad (ej: 20 piezas)" required />
+            </div>
+
+            <div style="margin-top:10px;">
+              <select class="input" name="corte">
+                <option value="No necesito corte">No necesito corte</option>
+                <option value="Sí, necesito corte a medida">Sí, necesito corte a medida</option>
+              </select>
+            </div>
+
+            <div style="margin-top:10px;">
+              <textarea class="input" name="detalle" placeholder="Detalles extra (si necesitas corte, pon medidas; si es entrega, pon tu zona/barrio)."></textarea>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+              <button class="btn btnPrimary" type="submit">Enviar por WhatsApp</button>
+              <button class="btn" type="button" id="btnCopy">Copiar mensaje</button>
+            </div>
+
+            <p class="note" style="margin-top:10px;">
+              📍 Retiro en: Calle Buena Vista, diagonal al Mercado de Abasto, La Chorrera.
+            </p>
+          </form>
+        </div>
+
+        <div class="card" style="padding:16px;">
+          <h3 style="margin:0 0 8px;">Servicios</h3>
+          <p class="desc">Te ayudamos a escoger la medida correcta según el uso y te cotizamos rápido por WhatsApp.</p>
+
+          <div class="card" style="padding:14px; margin-top:12px; background:rgba(255,255,255,.03); box-shadow:none;">
+            <b>✂️ Corte a medida</b>
+            <p class="desc" style="margin-top:6px;">Trae tu lista o croquis y te apoyamos a optimizar material.</p>
+          </div>
+
+          <div class="card" style="padding:14px; margin-top:12px; background:rgba(255,255,255,.03); box-shadow:none;">
+            <b>🚚 Entrega</b>
+            <p class="desc" style="margin-top:6px;">La Chorrera y alrededores (según zona y cantidad).</p>
+          </div>
+
+          <div class="card" style="padding:14px; margin-top:12px; background:rgba(255,255,255,.03); box-shadow:none;">
+            <b>🧠 Asesoría</b>
+            <p class="desc" style="margin-top:6px;">Si no sabes la medida, te orientamos (por pieza o pie tablar).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UBICACIÓN -->
+    <section id="ubicacion" class="section">
+      <div class="sectionHeader">
+        <div>
+          <h2>Ubicación</h2>
+          <small>Panamá, La Chorrera · Calle Buena Vista</small>
+        </div>
+      </div>
+
+      <div class="card" style="padding:16px;">
+        <div class="twoCol">
+          <div>
+            <b>Ventas Beltrán</b><br>
+            <span style="color:var(--muted); font-weight:650;">
+              Panamá, La Chorrera, Calle Buena Vista, diagonal al Mercado de Abasto.
+            </span>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+              <button class="btn btnPrimary" id="btnMaps">Cómo llegar (Maps)</button>
+              <button class="btn" id="btnWAFromLocation">Escribir por WhatsApp</button>
+            </div>
+            <p class="note" style="margin-top:10px;">
+              Horario sugerido: Lun–Sáb 8:00 a.m. – 6:00 p.m. (edítalo si quieres).
+            </p>
+          </div>
+
+          <div style="border-radius:16px; overflow:hidden; border:var(--border); background:rgba(255,255,255,.03);">
+            <iframe
+              title="Mapa Ventas Beltrán"
+              style="width:100%; height:260px; border:0;"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src=""
+              id="mapFrame">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="twoCol">
+        <div>
+          <b style="color:var(--text)">Ventas Beltrán · Madera sólida</b>
+          <div style="margin-top:6px;">📍 La Chorrera · Calle Buena Vista, diagonal al Mercado de Abasto</div>
+        </div>
+        <div style="text-align:right;">
+          <div>📞 WhatsApp: <b>+507 6695-0564</b></div>
+          <div style="margin-top:6px;">© <span id="year"></span> Ventas Beltrán</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <a class="floatingWA" id="btnWAFloat" href="#" aria-label="WhatsApp">
+    WhatsApp 💬
+  </a>
+
+  <script>
+    // ===== CONFIG =====
+    const WHATSAPP_NUMBER = "50766950564";
+
+    // Ubicación (texto) para botón Maps + iframe
+    const MAPS_QUERY = "Ventas Beltrán, Calle Buena Vista, La Chorrera, Panamá, diagonal Mercado de Abasto";
+
+    // ===== Catálogo (solo madera sólida) =====
+    // Incluye "todas las medidas" más usadas:
+    // Tablas: 1x4,1x6,1x8,1x10,1x12
+    // Vigas: 2x2,2x3,2x4,2x6,2x8,2x10,2x12, 4x4, 4x6, 6x6
+    // Listones: 1x1,1x2,1x3,1x4
+    // Largos: 8',10',12',14',16'
+    const PRODUCTS = [
+      // PINO
+      { id:"pino_tablas", wood:"Pino", name:"Tablas de Pino", tag:"Tablas", sizes:"1x4 · 1x6 · 1x8 · 1x10 · 1x12", lengths:"8′ · 10′ · 12′", desc:"Construcción y carpintería general.", img:"https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=1200&q=70" },
+      { id:"pino_vigas", wood:"Pino", name:"Vigas de Pino", tag:"Vigas", sizes:"2x2 · 2x3 · 2x4 · 2x6 · 2x8 · 2x10 · 2x12", lengths:"8′ · 10′ · 12′ · 14′ · 16′", desc:"Estructuras, marcos, refuerzo y obra.", img:"https://images.unsplash.com/photo-1581579188871-3b4b1d0b7e28?auto=format&fit=crop&w=1200&q=70" },
+      { id:"pino_cuadradas", wood:"Pino", name:"Madera Cuadrada (Pino)", tag:"Cuadrada", sizes:"4x4 · 4x6 · 6x6", lengths:"8′ · 10′ · 12′", desc:"Soportes, columnas y estructura pesada.", img:"https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1200&q=70" },
+      { id:"pino_listones", wood:"Pino", name:"Listones de Pino", tag:"Listones", sizes:"1x1 · 1x2 · 1x3 · 1x4", lengths:"8′ · 10′ · 12′", desc:"Carpintería, marcos, refuerzos y detalles.", img:"https://images.unsplash.com/photo-1493934558415-9d19f0b2b4d2?auto=format&fit=crop&w=1200&q=70" },
+
+      // CEDRO
+      { id:"cedro_tablas", wood:"Cedro", name:"Tablas de Cedro", tag:"Acabado", sizes:"1x4 · 1x6 · 1x8 · 1x10 · 1x12", lengths:"8′ · 10′ · 12′", desc:"Muebles, puertas, acabado y carpintería fina.", img:"https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1200&q=70" },
+      { id:"cedro_listones", wood:"Cedro", name:"Listones de Cedro", tag:"Premium", sizes:"1x1 · 1x2 · 1x3 · 1x4", lengths:"8′ · 10′ · 12′", desc:"Detalles finos, marcos y refuerzo para muebles.", img:"https://images.unsplash.com/photo-1565799557185-7d2c0b9d2f50?auto=format&fit=crop&w=1200&q=70" },
+
+      // TECA
+      { id:"teca_tablas", wood:"Teca", name:"Tablas de Teca", tag:"Exterior", sizes:"1x4 · 1x6 · 1x8", lengths:"8′ · 10′ · 12′", desc:"Exterior y muebles resistentes (sellado recomendado).", img:"https://images.unsplash.com/photo-1523419409543-a5e549c1faa0?auto=format&fit=crop&w=1200&q=70" },
+
+      // POSTES
+      { id:"postes", wood:"Postes", name:"Postes / Palos", tag:"Postes", sizes:"3″ · 4″ · 5″ · 6″", lengths:"según disponibilidad", desc:"Cercas, soportes y estructuras.", img:"https://images.unsplash.com/photo-1558459654-c430be7e9217?auto=format&fit=crop&w=1200&q=70" },
+
+      // SERVICIO
+      { id:"corte", wood:"Pino", name:"Servicio de Corte a Medida", tag:"Corte", sizes:"Corte recto", lengths:"según lista", desc:"Cortes a medida según tu lista o croquis.", img:"https://images.unsplash.com/photo-1519710887722-0d3c2d3b0f9a?auto=format&fit=crop&w=1200&q=70" },
+    ];
+
+    // ===== State =====
+    const state = { search:"", wood:"all" };
+    const qs = (s) => document.querySelector(s);
+
+    function openWA(message){
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    }
+
+    function buildProductMessage(p){
+      return `Hola Ventas Beltrán,
+Quiero cotizar: ${p.name}
+Madera: ${p.wood}
+Medidas disponibles: ${p.sizes}
+Largo: ${p.lengths}
+
+Por favor indícame:
+- Medida exacta:
+- Largo:
+- Cantidad:
+- ¿Necesita corte? (medidas):
+- ¿Entrega o retiro?
+- Cotización por pieza o pie tablar:`;
+    }
+
+    function renderProducts(){
+      const container = qs("#products");
+      container.innerHTML = "";
+
+      let list = PRODUCTS.slice();
+
+      const s = state.search.trim().toLowerCase();
+      if (s){
+        list = list.filter(p =>
+          (p.name + " " + p.wood + " " + p.tag + " " + p.sizes + " " + p.lengths + " " + p.desc).toLowerCase().includes(s)
+        );
+      }
+      if (state.wood !== "all"){
+        list = list.filter(p => p.wood === state.wood);
+      }
+
+      for (const p of list){
+        const card = document.createElement("div");
+        card.className = "card product";
+
+        card.innerHTML = `
+          <div class="thumb">
+            <img alt="${p.name}" src="${p.img}">
+            <div class="label">🪵 ${p.wood}</div>
+          </div>
+          <div class="pTop">
+            <h3>${p.name}</h3>
+            <span class="tag">${p.tag}</span>
+          </div>
+          <p class="desc"><b>Medidas:</b> ${p.sizes}<br><b>Largos:</b> ${p.lengths}<br>${p.desc}</p>
+          <div class="rowBtns">
+            <button class="btnSoft btnGreen" data-id="${p.id}">Cotizar por WhatsApp</button>
+            <button class="btnSoft" data-info="${p.id}">Ver medidas</button>
+          </div>
+        `;
+        container.appendChild(card);
+      }
+
+      // Handlers
+      container.querySelectorAll('button[data-id]').forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          const p = PRODUCTS.find(x => x.id === btn.dataset.id);
+          openWA(buildProductMessage(p));
+        });
+      });
+
+      container.querySelectorAll('button[data-info]').forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          const p = PRODUCTS.find(x => x.id === btn.dataset.info);
+          alert(`${p.name}\n\nMadera: ${p.wood}\nMedidas: ${p.sizes}\nLargos: ${p.lengths}\n\n📌 Para cotizar: dime medida exacta + largo + cantidad + corte + entrega/retiro.`);
+        });
+      });
+
+      if (!container.children.length){
+        const empty = document.createElement("div");
+        empty.className = "card";
+        empty.style.padding = "16px";
+        empty.innerHTML = `<b>No encontramos resultados</b><p class="desc">Prueba con otra palabra (ej: 2x4, 1x6, poste, cedro).</p>`;
+        container.appendChild(empty);
+      }
+    }
+
+    // ===== UI events =====
+    qs("#search").addEventListener("input", (e)=>{ state.search = e.target.value; renderProducts(); });
+    qs("#wood").addEventListener("change", (e)=>{ state.wood = e.target.value; renderProducts(); });
+
+    qs("#btnWAHeader").addEventListener("click", ()=>{
+      openWA("Hola Ventas Beltrán, quiero cotizar madera sólida. ¿Qué tienen disponible hoy?");
+    });
+
+    qs("#btnWAFloat").addEventListener("click", (e)=>{
+      e.preventDefault();
+      openWA("Hola Ventas Beltrán, quiero cotizar madera sólida. Medida, largo y cantidad. ¿Me ayudan?");
+    });
+
+    // Google Maps (botón + iframe)
+    function openMaps(){
+      const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAPS_QUERY)}`;
+      window.open(url, "_blank");
+    }
+    qs("#btnMaps").addEventListener("click", openMaps);
+    qs("#btnMapsHero").addEventListener("click", openMaps);
+
+    // Iframe map (usa embed por query)
+    const embedUrl = `https://www.google.com/maps?q=${encodeURIComponent(MAPS_QUERY)}&output=embed`;
+    qs("#mapFrame").src = embedUrl;
+
+    qs("#btnWAFromLocation").addEventListener("click", ()=>{
+      openWA(`Hola Ventas Beltrán, voy para el local en La Chorrera (Calle Buena Vista, diagonal al Mercado de Abasto). ¿Están abiertos?`);
+    });
+
+    // Quote form -> WhatsApp + copy
+    function buildQuoteMessage(data){
+      return `Hola Ventas Beltrán,
+Quiero una cotización de madera sólida.
+
+Datos:
+- Nombre: ${data.get("nombre")}
+- Tel/WhatsApp: ${data.get("telefono")}
+- Cotizar: ${data.get("unidad")}
+- Entrega: ${data.get("entrega")}
+
+Pedido:
+- Madera: ${data.get("madera")}
+- Medida: ${data.get("medida")}
+- Largo: ${data.get("largo")}
+- Cantidad: ${data.get("cantidad")}
+- Corte: ${data.get("corte")}
+
+Detalles:
+${data.get("detalle") || "N/A"}
+
+Ubicación del local: Calle Buena Vista, diagonal al Mercado de Abasto, La Chorrera.`;
+    }
+
+    qs("#quoteForm").addEventListener("submit", (e)=>{
+      e.preventDefault();
+      const data = new FormData(e.target);
+      openWA(buildQuoteMessage(data));
+    });
+
+    qs("#btnCopy").addEventListener("click", async ()=>{
+      const form = qs("#quoteForm");
+      const data = new FormData(form);
+      const msg = buildQuoteMessage(data);
+      try{
+        await navigator.clipboard.writeText(msg);
+        alert("Mensaje copiado ✅");
+      }catch{
+        alert("No pude copiar. Selecciona y copia manualmente.");
+      }
+    });
+
+    // Init
+    qs("#year").textContent = new Date().getFullYear();
+    renderProducts();
+  </script>
+
+  <a class="floatingWA" id="btnWAFloat" href="#" aria-label="WhatsApp">
+    WhatsApp 💬
+  </a>
+</body>
+</html>
